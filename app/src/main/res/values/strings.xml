@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Android_Swiss_Army_Knife</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Swiss Army App</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_barometer">Barometer</string>
+    <string name="menu_compass">Compass</string>
+    <string name="menu_level">Level</string>
+    <string name="menu_avoid_ohio">Avoid Ohio</string>
+    <string name="menu_metal_detector">Metal Detector</string>
+    <string name="menu_speedometer">Speedometer</string>
 </resources>

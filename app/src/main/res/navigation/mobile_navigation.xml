@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.android_swiss_army_knife.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_barometer"
+        android:name="com.example.android_swiss_army_knife.ui.barometer.BarometerFragment"
+        android:label="@string/menu_barometer"
+        tools:layout="@layout/fragment_barometer" />
+
+    <fragment
+        android:id="@+id/nav_compass"
+        android:name="com.example.android_swiss_army_knife.ui.compass.CompassFragment"
+        android:label="@string/menu_compass"
+        tools:layout="@layout/fragment_compass" />
+
+    <fragment
+        android:id="@+id/nav_level"
+        android:name="com.example.android_swiss_army_knife.ui.level.LevelFragment"
+        android:label="@string/menu_level"
+        tools:layout="@layout/fragment_level" />
+
+    <fragment
+        android:id="@+id/nav_speedometer"
+        android:name="com.example.android_swiss_army_knife.ui.speedometer.SpeedometerFragment"
+        android:label="@string/menu_speedometer"
+        tools:layout="@layout/fragment_speedometer" />
+
+    <fragment
+        android:id="@+id/nav_metal_detector"
+        android:name="com.example.android_swiss_army_knife.ui.metal_detector.MetalDetectorFragment"
+        android:label="@string/menu_metal_detector"
+        tools:layout="@layout/fragment_metal_detector" />
+
+    <fragment
+        android:id="@+id/nav_avoid_ohio"
+        android:name="com.example.android_swiss_army_knife.ui.avoid_ohio.AvoidOhioFragment"
+        android:label="@string/menu_avoid_ohio"
+        tools:layout="@layout/fragment_avoid_ohio" />
+</navigation>
