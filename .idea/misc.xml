@@ -1,5 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.138" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.138" />
+        <entry key="app/src/main/res/drawable/ic_menu_camera.xml" value="0.138" />
+        <entry key="app/src/main/res/drawable/ic_menu_gallery.xml" value="0.138" />
+        <entry key="app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.138" />
+        <entry key="app/src/main/res/drawable/side_nav_bar.xml" value="0.138" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.582010582010582" />
+        <entry key="app/src/main/res/layout/app_bar_main.xml" value="0.1078167115902965" />
+        <entry key="app/src/main/res/layout/content_main.xml" value="0.34375" />
+        <entry key="app/src/main/res/layout/content_main2.xml" value="0.34375" />
+        <entry key="app/src/main/res/layout/fragment_avoid_ohio.xml" value="0.34375" />
+        <entry key="app/src/main/res/layout/fragment_barometer.xml" value="0.18591691995947315" />
+        <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.34375" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.34375" />
+        <entry key="app/src/main/res/layout/fragment_level.xml" value="0.33016304347826086" />
+        <entry key="app/src/main/res/layout/fragment_metal_detector.xml" value="0.33016304347826086" />
+        <entry key="app/src/main/res/layout/fragment_slideshow.xml" value="0.34375" />
+        <entry key="app/src/main/res/layout/fragment_speedometer.xml" value="0.33016304347826086" />
+        <entry key="app/src/main/res/layout/nav_header.xml" value="0.5901041666666667" />
+        <entry key="app/src/main/res/layout/nav_header_main.xml" value="0.34375" />
+        <entry key="app/src/main/res/menu/activity_main_drawer.xml" value="0.34375" />
+        <entry key="app/src/main/res/menu/main.xml" value="0.34375" />
+        <entry key="app/src/main/res/menu/nav_menu.xml" value="0.5901041666666667" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
