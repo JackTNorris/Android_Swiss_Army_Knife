@@ -12,6 +12,7 @@ import com.example.android_swiss_army_knife.databinding.FragmentAvoidOhioBinding
 class AvoidOhioFragment : Fragment() {
 
     private var _binding: FragmentAvoidOhioBinding? = null
+    private lateinit var avoidOhioViewModel: AvoidOhioViewModel
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -22,9 +23,8 @@ class AvoidOhioFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val avoidOhioViewModel =
-            ViewModelProvider(this).get(AvoidOhioViewModel::class.java)
-
+        avoidOhioViewModel = ViewModelProvider(this)[AvoidOhioViewModel::class.java]
+        // call register sensors
         _binding = FragmentAvoidOhioBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
@@ -37,6 +37,7 @@ class AvoidOhioFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        // call deregister sensors
         _binding = null
     }
 }

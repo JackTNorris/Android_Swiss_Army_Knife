@@ -12,6 +12,7 @@ import com.example.android_swiss_army_knife.databinding.FragmentMetalDetectorBin
 class MetalDetectorFragment : Fragment() {
 
     private var _binding: FragmentMetalDetectorBinding? = null
+    private lateinit var metalDetectorViewModel: MetalDetectorViewModel
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -22,14 +23,13 @@ class MetalDetectorFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val levelViewModel =
-            ViewModelProvider(this).get(MetalDetectorViewModel::class.java)
+        metalDetectorViewModel = ViewModelProvider(this)[MetalDetectorViewModel::class.java]
 
         _binding = FragmentMetalDetectorBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
+        // call register sensors
         val textView: TextView = binding.textMetalDetector
-        levelViewModel.text.observe(viewLifecycleOwner) {
+        metalDetectorViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root
@@ -37,6 +37,7 @@ class MetalDetectorFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        // call deregister sensors
         _binding = null
     }
 }

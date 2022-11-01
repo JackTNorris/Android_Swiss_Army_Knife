@@ -12,6 +12,7 @@ import com.example.android_swiss_army_knife.databinding.FragmentSpeedometerBindi
 class SpeedometerFragment : Fragment() {
 
     private var _binding: FragmentSpeedometerBinding? = null
+    private lateinit var speedometerViewModel: SpeedometerViewModel
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -22,14 +23,13 @@ class SpeedometerFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val compassViewModel =
-            ViewModelProvider(this).get(SpeedometerViewModel::class.java)
-
+        speedometerViewModel = ViewModelProvider(this)[SpeedometerViewModel::class.java]
+        // call register sensors
         _binding = FragmentSpeedometerBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textSpeedometer
-        compassViewModel.text.observe(viewLifecycleOwner) {
+        speedometerViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root
@@ -37,6 +37,7 @@ class SpeedometerFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        // call deregister sensors
         _binding = null
     }
 }

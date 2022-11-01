@@ -12,6 +12,7 @@ import com.example.android_swiss_army_knife.databinding.FragmentLevelBinding
 class LevelFragment : Fragment() {
 
     private var _binding: FragmentLevelBinding? = null
+    private lateinit var levelViewModel: LevelViewModel
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -22,9 +23,8 @@ class LevelFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val levelViewModel =
-            ViewModelProvider(this).get(LevelViewModel::class.java)
-
+        levelViewModel = ViewModelProvider(this)[LevelViewModel::class.java]
+        // register sensors
         _binding = FragmentLevelBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
@@ -37,6 +37,7 @@ class LevelFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        // deregister sensors
         _binding = null
     }
 }
