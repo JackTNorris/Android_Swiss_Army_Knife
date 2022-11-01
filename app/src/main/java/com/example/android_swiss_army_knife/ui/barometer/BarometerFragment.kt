@@ -12,6 +12,7 @@ import com.example.android_swiss_army_knife.databinding.FragmentBarometerBinding
 class BarometerFragment : Fragment() {
 
     private var _binding: FragmentBarometerBinding? = null
+    private lateinit var barometerViewModel: BarometerViewModel
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -22,9 +23,8 @@ class BarometerFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val barometerViewModel =
-            ViewModelProvider(this).get(BarometerViewModel::class.java)
-
+        barometerViewModel = ViewModelProvider(this)[BarometerViewModel::class.java]
+        barometerViewModel.registerSensors()
         _binding = FragmentBarometerBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
@@ -37,6 +37,7 @@ class BarometerFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        barometerViewModel.deregisterSensors()
         _binding = null
     }
 }

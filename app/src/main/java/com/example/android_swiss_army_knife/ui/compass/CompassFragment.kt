@@ -12,6 +12,7 @@ import com.example.android_swiss_army_knife.databinding.FragmentCompassBinding
 class CompassFragment : Fragment() {
 
     private var _binding: FragmentCompassBinding? = null
+    private lateinit var compassViewModel: CompassViewModel
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -22,9 +23,8 @@ class CompassFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val compassViewModel =
-            ViewModelProvider(this).get(CompassViewModel::class.java)
-
+        compassViewModel = ViewModelProvider(this)[CompassViewModel::class.java]
+        // call register sensors
         _binding = FragmentCompassBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
@@ -37,6 +37,7 @@ class CompassFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        // call deregister sensors
         _binding = null
     }
 }
