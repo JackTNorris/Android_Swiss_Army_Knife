@@ -18,7 +18,6 @@ class MetalDetectorViewModel(application: Application) : AndroidViewModel(applic
     val text = MutableLiveData<String>().apply {
         value = "0.0"
     }
-//    val text: LiveData<String> = text
 
     fun updateTextWithSensorValue() {
        text.value =" MAGNETIC FIELD: " + (sqrt(magneticFieldMeasurementNorth.toDouble() * magneticFieldMeasurementNorth.toDouble()
@@ -38,7 +37,6 @@ class MetalDetectorViewModel(application: Application) : AndroidViewModel(applic
         }
     }
 
-
     fun deregisterSensors() { // set all sensors as inactive
         state!!.sensorMagneticFieldLiveData!!.setInactive() // required for each sensor you use
     }
@@ -52,7 +50,6 @@ class MetalDetectorViewModel(application: Application) : AndroidViewModel(applic
     }
 
     private class SensorState { // add additional sensors here
-        var sensorAccelerometerLiveData: SensorLiveData? = null
         var sensorMagneticFieldLiveData: SensorLiveData? = null
 
     }
