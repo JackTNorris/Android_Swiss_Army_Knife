@@ -37,7 +37,7 @@ internal class SensorLiveData(ctxt: Context, sensorType: Int, delay: Int) :
     }
 
     internal class Event(event: SensorEvent) {
-        private val values: FloatArray
+        val values: FloatArray
         val value: Float
 
         init {

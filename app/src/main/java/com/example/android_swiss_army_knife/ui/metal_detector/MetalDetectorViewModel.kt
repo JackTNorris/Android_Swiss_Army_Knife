@@ -30,9 +30,9 @@ class MetalDetectorViewModel(application: Application) : AndroidViewModel(applic
         state!!.sensorMagneticFieldLiveData = registerSpecificSensor(Sensor.TYPE_MAGNETIC_FIELD) // for each sensor
         state!!.sensorMagneticFieldLiveData!!.observeForever { event: SensorLiveData.Event? ->
             if (event != null) {
-                magneticFieldMeasurementNorth = event.value.toString()
-                magneticFieldMeasurementEast = event.value.toString()
-                magneticFieldMeasurementUp = event.value.toString()
+                magneticFieldMeasurementNorth = event.values[0].toString()
+                magneticFieldMeasurementEast = event.values[1].toString()
+                magneticFieldMeasurementUp = event.values[2].toString()
                 updateTextWithSensorValue()
             }
         }
