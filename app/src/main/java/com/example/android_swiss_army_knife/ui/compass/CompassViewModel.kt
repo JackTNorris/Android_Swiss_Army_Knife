@@ -3,36 +3,42 @@ package com.example.android_swiss_army_knife.ui.compass
 import android.app.Application
 import android.hardware.Sensor
 import android.hardware.SensorManager
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
 import com.example.android_swiss_army_knife.SensorLiveData
-import com.example.android_swiss_army_knife.ui.barometer.BarometerViewModel
 
 class CompassViewModel(application: Application) : AndroidViewModel(application) {
     private var state: CompassViewModel.SensorState = CompassViewModel.SensorState()
-    private var accelerometerMeasurement: String = "0.0"
-    private var magneticFieldMeasurement: String = "0.0"
-    val text = MutableLiveData<String>().apply {
-        value = "0.0"
+    private var accelerometerMeasurement: FloatArray = FloatArray(3)
+    private var magneticFieldMeasurement: FloatArray = FloatArray(3)
+    private val mR = FloatArray(9)
+    private val mOrientation = FloatArray(3)
+
+    val compass_rotation = MutableLiveData<Double>().apply {
+        value = 0.0
     }
     // val text: LiveData<String> = _text
 
     fun updateTextWithSensorValues() {
-        text.value = "ACCELEROMETER: " + accelerometerMeasurement + "\nMAGNETIC FIELD: " + magneticFieldMeasurement
+        SensorManager.getRotationMatrix(mR, null, accelerometerMeasurement, magneticFieldMeasurement);
+        SensorManager.getOrientation(mR, mOrientation);
+        var compassRadianMeasurement = mOrientation[0]
+        var compassDegreeMeasurement = (Math.toDegrees(compassRadianMeasurement.toDouble())+360)%360;
+
+        compass_rotation.value = compassDegreeMeasurement
     }
     fun registerSensors() { // use entire block for each sensor you need in this class
         state!!.sensorMagneticFieldLiveData = registerSpecificSensor(Sensor.TYPE_MAGNETIC_FIELD) // for each sensor
         state!!.sensorAccelerometerLiveData = registerSpecificSensor(Sensor.TYPE_ACCELEROMETER)
         state!!.sensorMagneticFieldLiveData!!.observeForever { event: SensorLiveData.Event? ->
             if (event != null) {
-                magneticFieldMeasurement = event.value.toString()
+                magneticFieldMeasurement = event.values
                 updateTextWithSensorValues()
             }
         } // for each sensor
         state!!.sensorAccelerometerLiveData!!.observeForever { event: SensorLiveData.Event? ->
             if (event != null) {
-                accelerometerMeasurement = event.value.toString()
+                accelerometerMeasurement = event.values
                 updateTextWithSensorValues()
             }
         } // for each sensor
