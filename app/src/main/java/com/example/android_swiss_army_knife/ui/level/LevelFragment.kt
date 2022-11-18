@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.android_swiss_army_knife.databinding.FragmentCompassBinding
 import com.example.android_swiss_army_knife.databinding.FragmentLevelBinding
+import com.example.android_swiss_army_knife.ui.compass.CompassViewModel
 
 class LevelFragment : Fragment() {
 
@@ -24,7 +26,7 @@ class LevelFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         levelViewModel = ViewModelProvider(this)[LevelViewModel::class.java]
-        // register sensors
+        levelViewModel.registerSensors()
         _binding = FragmentLevelBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
@@ -35,9 +37,10 @@ class LevelFragment : Fragment() {
         return root
     }
 
+
     override fun onDestroyView() {
         super.onDestroyView()
-        // deregister sensors
+        levelViewModel.deregisterSensors()
         _binding = null
     }
 }

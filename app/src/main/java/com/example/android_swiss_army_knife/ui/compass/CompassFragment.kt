@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.android_swiss_army_knife.databinding.FragmentBarometerBinding
 import com.example.android_swiss_army_knife.databinding.FragmentCompassBinding
+import com.example.android_swiss_army_knife.ui.barometer.BarometerViewModel
 
 class CompassFragment : Fragment() {
 
@@ -24,7 +26,7 @@ class CompassFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         compassViewModel = ViewModelProvider(this)[CompassViewModel::class.java]
-        // call register sensors
+        compassViewModel.registerSensors()
         _binding = FragmentCompassBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
@@ -37,7 +39,7 @@ class CompassFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        // call deregister sensors
+        compassViewModel.deregisterSensors()
         _binding = null
     }
 }

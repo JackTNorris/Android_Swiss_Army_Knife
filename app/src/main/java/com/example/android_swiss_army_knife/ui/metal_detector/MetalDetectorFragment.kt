@@ -24,7 +24,7 @@ class MetalDetectorFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         metalDetectorViewModel = ViewModelProvider(this)[MetalDetectorViewModel::class.java]
-
+        metalDetectorViewModel.registerSensors()
         _binding = FragmentMetalDetectorBinding.inflate(inflater, container, false)
         val root: View = binding.root
         // call register sensors
