@@ -41,7 +41,7 @@ class CompassFragment : Fragment() {
         compassViewModel.compass_rotation.observe(viewLifecycleOwner) {
             textView.text = it.toString()
             val ra = RotateAnimation(
-                previousDegree.toFloat(),
+                -previousDegree.toFloat(),
                 -it.toFloat(),
                 Animation.RELATIVE_TO_SELF, 0.5f,
                 Animation.RELATIVE_TO_SELF,

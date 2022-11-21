@@ -24,8 +24,10 @@ class CompassViewModel(application: Application) : AndroidViewModel(application)
         SensorManager.getOrientation(mR, mOrientation);
         var compassRadianMeasurement = mOrientation[0]
         var compassDegreeMeasurement = (Math.toDegrees(compassRadianMeasurement.toDouble())+360)%360;
-
-        compass_rotation.value = compassDegreeMeasurement
+        if (Math.abs(compassDegreeMeasurement - compass_rotation.value!!) > 5)
+        {
+            compass_rotation.value = compassDegreeMeasurement
+        }
     }
     fun registerSensors() { // use entire block for each sensor you need in this class
         state!!.sensorMagneticFieldLiveData = registerSpecificSensor(Sensor.TYPE_MAGNETIC_FIELD) // for each sensor
