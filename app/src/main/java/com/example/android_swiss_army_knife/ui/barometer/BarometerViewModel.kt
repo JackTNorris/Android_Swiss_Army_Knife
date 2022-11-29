@@ -6,28 +6,36 @@ import android.hardware.SensorManager
 import androidx.lifecycle.*
 import com.example.android_swiss_army_knife.SensorLiveData
 
-/*
-For each sensor, make sure to use registerSensors and create each sensor using registerSpecificSensor
-registerSpecificSensor should not be modified
-Be sure to deregister each sensor as well
-Add variable for each sensor in SensorState
-In summary, paste everything in this class and modify to use your specific sensor.
- */
-
 class BarometerViewModel(application: Application) : AndroidViewModel(application) {
     private var state: SensorState = SensorState()
 
-    val text = MutableLiveData<String>().apply {
+
+    private val _text = MutableLiveData<String>().apply {
         value = "0.0"
+    }
+
+    val text: LiveData<String>
+        get() = _text
+
+    private var units = hpaUnit
+    fun updateUnits(pressureUnits: String) {
+        //TODO store in var to use before setting value (and add units to end)
+        units = pressureUnits
     }
 
     fun registerSensors() { // use entire block for each sensor you need in this class
         state!!.sensorBarometerLiveData = registerSpecificSensor(Sensor.TYPE_PRESSURE) // for each sensor
         state!!.sensorBarometerLiveData!!.observeForever { event: SensorLiveData.Event? ->
             if (event != null) {
-                text.value = event.value.toString()
+                val tmpSensorValue = event.value.toDouble()
+                _text.value = when (units) {
+                    atmUnit -> "${tmpSensorValue * 0.000987} $atmUnit"
+                    psiUnit -> "${tmpSensorValue * 0.0145} $psiUnit"
+                    hpaUnit -> "$tmpSensorValue $hpaUnit"
+                    else -> "Bad units given, $units"
+                }
             }
-        } // for each sensor
+        }
     }
 
     fun deregisterSensors() { // set all sensors as inactive
@@ -45,5 +53,11 @@ class BarometerViewModel(application: Application) : AndroidViewModel(applicatio
 
     private class SensorState { // add additional sensors here
         var sensorBarometerLiveData: SensorLiveData? = null // new var for each sensor if multiple are needed
+    }
+
+    companion object {
+        const val hpaUnit = "hPa"
+        const val psiUnit = "psi"
+        const val atmUnit = "atm"
     }
 }
