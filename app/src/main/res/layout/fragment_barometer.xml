@@ -6,16 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".ui.barometer.BarometerFragment">
 
+    <com.ekn.gruzer.gaugelibrary.HalfGauge
+        android:id="@+id/pressureGauge"
+        android:layout_width="370dp"
+        android:layout_height="350dp"
+        app:layout_constraintBottom_toTopOf="@id/hpaMainFAB"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/text_barometer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/pressureGauge" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/hpaMainFAB"

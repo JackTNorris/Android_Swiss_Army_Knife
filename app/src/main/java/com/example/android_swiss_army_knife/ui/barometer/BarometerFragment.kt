@@ -1,15 +1,15 @@
 package com.example.android_swiss_army_knife.ui.barometer
 
-import android.animation.AnimatorListenerAdapter
+import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.ekn.gruzer.gaugelibrary.HalfGauge
+import com.ekn.gruzer.gaugelibrary.Range
 import com.example.android_swiss_army_knife.databinding.FragmentBarometerBinding
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 
@@ -34,9 +34,9 @@ class BarometerFragment : Fragment() {
         _binding = FragmentBarometerBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textBarometer
-        barometerViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        val gauge: HalfGauge = binding.pressureGauge
+        barometerViewModel.value.observe(viewLifecycleOwner) {
+            gauge.value = it
         }
 
         val mainFab: ExtendedFloatingActionButton = binding.hpaMainFAB
@@ -66,6 +66,54 @@ class BarometerFragment : Fragment() {
             mainFab.text = atmUnit
             barometerViewModel.updateUnits(atmUnit)
             hideFabs(psiFab, atmFab)
+        }
+
+        val rangeLow = Range()
+        rangeLow.color = Color.parseColor("#ce0000")
+        val rangeHigh = Range()
+        rangeHigh.color = Color.parseColor("#ce0000")
+        val rangeNormal = Range()
+        rangeNormal.color = Color.parseColor("#00b20b")
+        gauge.addRange(rangeLow)
+        gauge.addRange(rangeHigh)
+        gauge.addRange(rangeNormal)
+
+        val textView: TextView = binding.textBarometer
+        textView.text = hpaUnit
+        barometerViewModel.units.observe(viewLifecycleOwner) {
+            textView.text = it
+            when (it) {
+                hpaUnit -> {
+                    gauge.minValue = 900.0
+                    gauge.maxValue = 1100.0
+                    rangeLow.from = 900.0
+                    rangeLow.to = 950.0
+                    rangeHigh.from = 1050.0
+                    rangeHigh.to = 1100.0
+                    rangeNormal.from = 950.0
+                    rangeNormal.to = 1050.0
+                }
+                psiUnit -> {
+                    gauge.minValue = 13.05
+                    gauge.maxValue = 15.95
+                    rangeLow.from = 13.05
+                    rangeLow.to = 13.775
+                    rangeHigh.from = 15.225
+                    rangeHigh.to = 15.95
+                    rangeNormal.from = 13.775
+                    rangeNormal.to = 15.225
+                }
+                atmUnit -> {
+                    gauge.minValue = 0.8883
+                    gauge.maxValue = 1.0857
+                    rangeLow.from = 0.8883
+                    rangeLow.to = 0.93765
+                    rangeHigh.from = 1.03635
+                    rangeHigh.to = 1.0857
+                    rangeNormal.from = 0.93765
+                    rangeNormal.to = 1.03635
+                }
+            }
         }
         return root
     }
