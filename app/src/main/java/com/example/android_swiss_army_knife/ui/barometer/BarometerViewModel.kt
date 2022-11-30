@@ -4,7 +4,7 @@ import android.app.Application
 import android.hardware.Sensor
 import android.hardware.SensorManager
 import androidx.lifecycle.*
-import com.example.android_swiss_army_knife.SensorLiveData
+import com.example.android_swiss_army_knife.util.SensorLiveData
 
 /*
 For each sensor, make sure to use registerSensors and create each sensor using registerSpecificSensor
