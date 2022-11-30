@@ -15,14 +15,28 @@ class LevelViewModel(application: Application) : AndroidViewModel(application) {
     val text = MutableLiveData<String>().apply {
         value = "This is level Fragment"
     }
-    // val text: LiveData<String> = _text
+
+    val x_rotation = MutableLiveData<Float>().apply {
+        value = 0.0f
+    }
+    val y_rotation = MutableLiveData<Float>().apply {
+        value = 0.0f
+    }
+    val z_rotation = MutableLiveData<Float>().apply {
+        value = 0.0f
+    }
 
     fun registerSensors() { // use entire block for each sensor you need in this class
         state!!.sensorLevelLiveData = registerSpecificSensor(Sensor.TYPE_ROTATION_VECTOR) // for each sensor
         state!!.sensorLevelLiveData!!.observeForever { event: SensorLiveData.Event? ->
+
             if (event != null) {
+                x_rotation.value = event.values[0]
+                y_rotation.value = event.values[1]
+                z_rotation.value = event.values[2]
                 text.value = event.value.toString()
             }
+
         } // for each sensor
     }
 
