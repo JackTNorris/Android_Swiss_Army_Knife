@@ -36,6 +36,8 @@ class AvoidOhioViewModel(application: Application) : AndroidViewModel(applicatio
         }
         override fun locationUpdatedCallback(location: Location) {
             state.sensorGpsLiveData = location
+            min = 360.0
+            max = 0.0
             getMinMaxAngles()
             val facingOhio = (compassRotation.value!! in min..max)
             _text.value = "Direction is: ${compassRotation.value}, Facing Ohio?: $facingOhio"
@@ -68,7 +70,7 @@ class AvoidOhioViewModel(application: Application) : AndroidViewModel(applicatio
         SensorManager.getRotationMatrix(mR, null, accelerometerMeasurement, magneticFieldMeasurement)
         SensorManager.getOrientation(mR, mOrientation)
         val compassDegreeMeasurement = (Math.toDegrees(mOrientation[0].toDouble())+360)%360
-        if (abs(compassDegreeMeasurement - compassRotation.value!!) > 5) {
+        if (abs(compassDegreeMeasurement - compassRotation.value!!) > 1.0) {
             compassRotation.value = compassDegreeMeasurement
         }
     }
@@ -78,7 +80,6 @@ class AvoidOhioViewModel(application: Application) : AndroidViewModel(applicatio
     private fun getMinMaxAngles() { // input is all outside coordinates
         allOhioPoints.forEach {
             val bearingAngle = (state.sensorGpsLiveData.bearingTo(it).toDouble() + 360) % 360
-            Log.d("currentAngle", bearingAngle.toString())
             if (bearingAngle < min) {
                 min = bearingAngle
             } else if (bearingAngle > max) {
