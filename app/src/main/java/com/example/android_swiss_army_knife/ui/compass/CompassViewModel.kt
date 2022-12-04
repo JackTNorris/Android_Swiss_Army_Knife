@@ -5,7 +5,8 @@ import android.hardware.Sensor
 import android.hardware.SensorManager
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.example.android_swiss_army_knife.SensorLiveData
+import com.example.android_swiss_army_knife.util.SensorLiveData
+
 
 class CompassViewModel(application: Application) : AndroidViewModel(application) {
     private var state: CompassViewModel.SensorState = CompassViewModel.SensorState()
@@ -24,10 +25,7 @@ class CompassViewModel(application: Application) : AndroidViewModel(application)
         SensorManager.getOrientation(mR, mOrientation);
         var compassRadianMeasurement = mOrientation[0]
         var compassDegreeMeasurement = Math.toDegrees(compassRadianMeasurement.toDouble())
-        if (Math.abs(compassDegreeMeasurement - compass_rotation.value!!) > 3)
-        {
-            compass_rotation.value = -compassDegreeMeasurement
-        }
+        compass_rotation.value = -compassDegreeMeasurement
     }
 
     // https://talesofcode.com/developing-compass-android-application/
