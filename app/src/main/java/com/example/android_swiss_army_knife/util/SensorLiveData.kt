@@ -1,4 +1,4 @@
-package com.example.android_swiss_army_knife
+package com.example.android_swiss_army_knife.util
 
 import android.content.Context
 import android.hardware.Sensor

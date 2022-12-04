@@ -4,7 +4,7 @@ import android.app.Application
 import android.hardware.Sensor
 import android.hardware.SensorManager
 import androidx.lifecycle.*
-import com.example.android_swiss_army_knife.SensorLiveData
+import com.example.android_swiss_army_knife.util.SensorLiveData
 
 class BarometerViewModel(application: Application) : AndroidViewModel(application) {
     private var state: SensorState = SensorState()
@@ -23,7 +23,6 @@ class BarometerViewModel(application: Application) : AndroidViewModel(applicatio
         get() = _units
 
     fun updateUnits(pressureUnits: String) {
-        //TODO store in var to use before setting value (and add units to end)
         _units.value = pressureUnits
     }
 
