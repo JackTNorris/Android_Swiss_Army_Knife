@@ -3,10 +3,9 @@ package com.example.android_swiss_army_knife.ui.level
 import android.app.Application
 import android.hardware.Sensor
 import android.hardware.SensorManager
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.AndroidViewModel
-import com.example.android_swiss_army_knife.SensorLiveData
+import com.example.android_swiss_army_knife.util.SensorLiveData
 
 class LevelViewModel(application: Application) : AndroidViewModel(application) {
 

@@ -5,7 +5,7 @@ import android.hardware.Sensor
 import android.hardware.SensorManager
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.AndroidViewModel
-import com.example.android_swiss_army_knife.SensorLiveData
+import com.example.android_swiss_army_knife.util.SensorLiveData
 import kotlin.math.sqrt
 
 class MetalDetectorViewModel(application: Application) : AndroidViewModel(application) {
