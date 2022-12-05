@@ -4,23 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/mrkrabs"
+    android:background="@drawable/metal_background"
+
     tools:context=".ui.metal_detector.MetalDetectorFragment">
 
-    <TextView
-        android:id="@+id/text_metal_detector"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:textStyle="bold|italic"
-        android:text="test"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="60dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/text_metal_detector"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Magnetic Field\n(μT)"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="50dp"
+            android:textStyle="bold|italic" />
+
+        <com.ekn.gruzer.gaugelibrary.HalfGauge
+            android:id="@+id/metalGauge"
+            android:layout_width="match_parent"
+            android:layout_height="350dp" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
