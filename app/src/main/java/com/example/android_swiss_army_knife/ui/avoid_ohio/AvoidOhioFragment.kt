@@ -1,7 +1,6 @@
 package com.example.android_swiss_army_knife.ui.avoid_ohio
 
 import android.Manifest
-import android.app.Application
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.android_swiss_army_knife.databinding.FragmentAvoidOhioBinding
-import com.google.android.gms.location.LocationServices
 
 class AvoidOhioFragment : Fragment() {
 
