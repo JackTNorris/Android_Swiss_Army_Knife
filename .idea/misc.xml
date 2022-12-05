@@ -15,6 +15,7 @@
         <entry key="app/src/main/res/layout/content_main.xml" value="0.34375" />
         <entry key="app/src/main/res/layout/fragment_avoid_ohio.xml" value="0.34375" />
         <entry key="app/src/main/res/layout/fragment_barometer.xml" value="0.18591691995947315" />
+        <entry key="app/src/main/res/layout/fragment_compass.xml" value="0.18645833333333334" />
         <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.34375" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.34375" />
         <entry key="app/src/main/res/layout/fragment_level.xml" value="0.33016304347826086" />
