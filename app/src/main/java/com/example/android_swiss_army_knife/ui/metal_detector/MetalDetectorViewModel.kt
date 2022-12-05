@@ -7,6 +7,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.AndroidViewModel
 import com.example.android_swiss_army_knife.SensorLiveData
 import kotlin.math.sqrt
+import androidx.databinding.adapters.ViewBindingAdapter.setBackground
+import androidx.lifecycle.LiveData
+import com.example.android_swiss_army_knife.ui.barometer.BarometerViewModel
 
 class MetalDetectorViewModel(application: Application) : AndroidViewModel(application) {
     private var state: MetalDetectorViewModel.SensorState = MetalDetectorViewModel.SensorState()
@@ -14,16 +17,23 @@ class MetalDetectorViewModel(application: Application) : AndroidViewModel(applic
     private var magneticFieldMeasurementNorth: String = "0.0"
     private var magneticFieldMeasurementEast: String = "0.0"
     private var magneticFieldMeasurementUp: String = "0.0"
+    private var magnetism: Double = 0.0
 
-    val text = MutableLiveData<String>().apply {
-        value = "0.0"
+    private val _value = MutableLiveData<Double>().apply {
+        value = 0.0
     }
+
+    val value: LiveData<Double>
+        get() = _value
 
     fun updateTextWithSensorValue() {
-       text.value =" MAGNETIC FIELD: " + (sqrt(magneticFieldMeasurementNorth.toDouble() * magneticFieldMeasurementNorth.toDouble()
+       magnetism = (sqrt(magneticFieldMeasurementNorth.toDouble() * magneticFieldMeasurementNorth.toDouble()
                + magneticFieldMeasurementEast.toDouble() * magneticFieldMeasurementEast.toDouble()
                + magneticFieldMeasurementUp.toDouble() * magneticFieldMeasurementUp.toDouble()))
+
+       _value.value = ((magnetism*100).toInt().toDouble())/100
     }
+
 
     fun registerSensors() { // use entire block for each sensor you need in this class
         state!!.sensorMagneticFieldLiveData = registerSpecificSensor(Sensor.TYPE_MAGNETIC_FIELD) // for each sensor
