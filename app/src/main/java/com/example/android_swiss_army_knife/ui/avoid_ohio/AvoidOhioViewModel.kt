@@ -39,8 +39,6 @@ class AvoidOhioViewModel(application: Application) : AndroidViewModel(applicatio
             min = 360.0
             max = 0.0
             getMinMaxAngles()
-            val facingOhio = (compassRotation.value!! in min..max)
-            _text.value = "Direction is: ${compassRotation.value}, Facing Ohio?: $facingOhio"
         }
     }
 
@@ -72,6 +70,8 @@ class AvoidOhioViewModel(application: Application) : AndroidViewModel(applicatio
         val compassDegreeMeasurement = (Math.toDegrees(mOrientation[0].toDouble())+360)%360
         if (abs(compassDegreeMeasurement - compassRotation.value!!) > 1.0) {
             compassRotation.value = compassDegreeMeasurement
+            val facingOhio = (compassRotation.value!! in min..max)
+            _text.value = "Direction is: ${compassRotation.value}, Facing Ohio?: $facingOhio"
         }
     }
 
