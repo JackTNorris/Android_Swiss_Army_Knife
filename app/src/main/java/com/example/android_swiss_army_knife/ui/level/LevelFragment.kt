@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.android_swiss_army_knife.databinding.FragmentCompassBinding
 import com.example.android_swiss_army_knife.databinding.FragmentLevelBinding
-import com.example.android_swiss_army_knife.ui.compass.CompassViewModel
+import com.mikhaellopez.circleview.CircleView
+
 
 class LevelFragment : Fragment() {
 
@@ -20,6 +20,7 @@ class LevelFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -29,11 +30,22 @@ class LevelFragment : Fragment() {
         levelViewModel.registerSensors()
         _binding = FragmentLevelBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
         val textView: TextView = binding.textLevel
-        levelViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        val movingCircle: CircleView = binding.movingCircle
+        val boundCircle: CircleView = binding.circleView
+        val mWidth = this.resources.displayMetrics.widthPixels
+        val mHeight = this.resources.displayMetrics.heightPixels
+
+        levelViewModel.orientation.observe(viewLifecycleOwner) {
+            val shiftY = it[1]
+            val shiftX = it[0]
+            val scaleShiftX = (boundCircle.width - movingCircle.width) / 2 * shiftX / 9.8f
+            val scaleShiftY = (boundCircle.height - movingCircle.height) / 2 * shiftY / 9.8f
+
+            movingCircle.x = mWidth/2 - movingCircle.width/2 + scaleShiftX
+            movingCircle.y = mHeight/2- movingCircle.height - scaleShiftY
         }
+
         return root
     }
 
