@@ -1,7 +1,6 @@
 package com.example.android_swiss_army_knife.ui.light
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,7 +44,6 @@ class LightFragment : Fragment() {
             params.height = heightWidth
             params.width = heightWidth
             imageView.layoutParams = params
-            Log.d("imageView", "height: ${imageView.layoutParams.height}, width: ${imageView.layoutParams.width}")
         }
         return root
     }
