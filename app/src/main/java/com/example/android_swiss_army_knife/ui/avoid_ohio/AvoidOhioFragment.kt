@@ -16,6 +16,7 @@ class AvoidOhioFragment : Fragment() {
 
     private var _binding: FragmentAvoidOhioBinding? = null
     private lateinit var avoidOhioViewModel: AvoidOhioViewModel
+    private lateinit var textView: TextView
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -52,19 +53,23 @@ class AvoidOhioFragment : Fragment() {
         _binding = FragmentAvoidOhioBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textAvoidOhio
+        textView = binding.textAvoidOhio
         avoidOhioViewModel.facingOhio.observe(viewLifecycleOwner) {
-            textView.text = it.toString()
+            if (it) {
+                facingOhio()
+            } else {
+                notFacingOhio()
+            }
         }
         return root
     }
 
     private fun facingOhio() {
-
+        textView.text = "yes"
     }
 
     private fun notFacingOhio() {
-
+        textView.text = "no"
     }
 
     override fun onStart() {
