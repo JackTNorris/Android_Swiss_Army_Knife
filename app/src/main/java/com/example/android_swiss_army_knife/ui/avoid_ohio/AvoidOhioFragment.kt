@@ -53,10 +53,18 @@ class AvoidOhioFragment : Fragment() {
         val root: View = binding.root
 
         val textView: TextView = binding.textAvoidOhio
-        avoidOhioViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        avoidOhioViewModel.facingOhio.observe(viewLifecycleOwner) {
+            textView.text = it.toString()
         }
         return root
+    }
+
+    private fun facingOhio() {
+
+    }
+
+    private fun notFacingOhio() {
+
     }
 
     override fun onStart() {
