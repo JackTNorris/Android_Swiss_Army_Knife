@@ -1,18 +1,21 @@
 package com.example.android_swiss_army_knife.ui.light
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewGroup.LayoutParams
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.android_swiss_army_knife.databinding.FragmentHomeBinding
+import com.example.android_swiss_army_knife.databinding.FragmentLightBinding
 
 class LightFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
-    private lateinit var homeViewModel: LightViewModel
+    private var _binding: FragmentLightBinding? = null
+    private lateinit var lightViewModel: LightViewModel
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -23,23 +26,33 @@ class LightFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        homeViewModel =
+        lightViewModel =
             ViewModelProvider(this)[LightViewModel::class.java]
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentLightBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        homeViewModel.registerSensors()
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
+        lightViewModel.registerSensors()
+        val textView: TextView = binding.textLight
+        lightViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
+        }
+
+        val imageView: ImageView = binding.imageLight
+        lightViewModel.image.observe(viewLifecycleOwner) {
+            val params: LayoutParams = imageView.layoutParams as LayoutParams
+            val heightWidth = (it * 1300).toInt() + 100
+            params.height = heightWidth
+            params.width = heightWidth
+            imageView.layoutParams = params
+            Log.d("imageView", "height: ${imageView.layoutParams.height}, width: ${imageView.layoutParams.width}")
         }
         return root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        homeViewModel.deregisterSensors()
+        lightViewModel.deregisterSensors()
         _binding = null
     }
 }

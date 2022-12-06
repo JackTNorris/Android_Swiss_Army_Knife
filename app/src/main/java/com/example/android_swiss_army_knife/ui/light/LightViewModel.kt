@@ -12,16 +12,29 @@ class LightViewModel(application: Application) : AndroidViewModel(application) {
     private var state: SensorState = SensorState()
 
     private val _text = MutableLiveData<String>().apply {
-        value = ""
+        value = "0.0"
     }
     val text: LiveData<String>
         get() = _text
+
+    private val _image = MutableLiveData<Double>().apply {
+        value = 0.0
+    }
+    val image: LiveData<Double>
+        get() = _image
 
     fun registerSensors() { // use entire block for each sensor you need in this class
         state!!.sensorBarometerLiveData = registerSpecificSensor(Sensor.TYPE_LIGHT) // for each sensor
         state!!.sensorBarometerLiveData!!.observeForever { event: SensorLiveData.Event? ->
             if (event != null) {
-                _text.value = event.value.toString()
+                val currLight = event.value.toDouble()
+                _text.value = currLight.toString()
+                val lumensLimit = 1500
+                if (currLight >= lumensLimit) {
+                    _image.value = 1.0
+                } else {
+                    _image.value = currLight / lumensLimit
+                }
             }
         }
     }

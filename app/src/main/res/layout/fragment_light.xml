@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
+    <ImageView
+        android:id="@+id/image_light"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/sun"
+        app:layout_constraintBottom_toTopOf="@id/text_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
     <TextView
         android:id="@+id/text_light"
         android:layout_width="match_parent"
@@ -18,5 +29,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/image_light" />
 </androidx.constraintlayout.widget.ConstraintLayout>

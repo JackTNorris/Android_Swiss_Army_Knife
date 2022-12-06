@@ -122,7 +122,7 @@ class AvoidOhioViewModel(application: Application) : AndroidViewModel(applicatio
         return SensorLiveData(
             thisContext,
             sensorType,
-            SensorManager.SENSOR_DELAY_UI
+            SensorManager.SENSOR_DELAY_NORMAL
         )
     }
 
