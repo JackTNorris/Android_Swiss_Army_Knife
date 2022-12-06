@@ -14,4 +14,5 @@
     <string name="menu_avoid_ohio">Avoid Ohio</string>
     <string name="menu_metal_detector">Metal Detector</string>
     <string name="menu_speedometer">Speedometer</string>
+    <string name="menu_light">Light Detector</string>
 </resources>

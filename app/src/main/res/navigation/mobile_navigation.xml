@@ -42,8 +42,15 @@
         tools:layout="@layout/fragment_metal_detector" />
 
     <fragment
+        android:id="@+id/nav_light"
+        android:name="com.example.android_swiss_army_knife.ui.light.LightFragment"
+        android:label="@string/menu_light"
+        tools:layout="@layout/fragment_light" />
+
+    <fragment
         android:id="@+id/nav_avoid_ohio"
         android:name="com.example.android_swiss_army_knife.ui.avoid_ohio.AvoidOhioFragment"
         android:label="@string/menu_avoid_ohio"
         tools:layout="@layout/fragment_avoid_ohio" />
+
 </navigation>

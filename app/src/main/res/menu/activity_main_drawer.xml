@@ -35,6 +35,11 @@
             android:title="@string/menu_metal_detector" />
 
         <item
+            android:id="@+id/nav_light"
+            android:icon="@drawable/ic_menu_light"
+            android:title="@string/menu_light" />
+
+        <item
             android:id="@+id/nav_avoid_ohio"
             android:icon="@drawable/ic_menu_avoid_ohio"
             android:title="@string/menu_avoid_ohio" />

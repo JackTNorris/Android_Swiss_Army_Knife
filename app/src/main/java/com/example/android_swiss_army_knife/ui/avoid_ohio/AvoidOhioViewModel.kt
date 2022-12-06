@@ -5,7 +5,6 @@ import android.app.Application
 import android.hardware.Sensor
 import android.hardware.SensorManager
 import android.location.Location
-import android.util.Log
 import androidx.activity.result.ActivityResultLauncher
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -86,7 +85,6 @@ class AvoidOhioViewModel(application: Application) : AndroidViewModel(applicatio
                 max = bearingAngle
             }
         }
-        Log.d("bearing", "min: $min, max: $max")
     }
 
     fun registerSensors() { // use entire block for each sensor you need in this class
@@ -122,7 +120,7 @@ class AvoidOhioViewModel(application: Application) : AndroidViewModel(applicatio
         return SensorLiveData(
             thisContext,
             sensorType,
-            SensorManager.SENSOR_DELAY_UI
+            SensorManager.SENSOR_DELAY_NORMAL
         )
     }
 
