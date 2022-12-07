@@ -19,16 +19,6 @@ class LevelViewModel(application: Application) : AndroidViewModel(application) {
         value = floatArrayOf(0f, 0f, 0f)
     }
 
-    val x_rotation = MutableLiveData<Float>().apply {
-        value = 0.0f
-    }
-    val y_rotation = MutableLiveData<Float>().apply {
-        value = 0.0f
-    }
-    val z_rotation = MutableLiveData<Float>().apply {
-        value = 0.0f
-    }
-
     fun registerSensors() { // use entire block for each sensor you need in this class
         state!!.sensorLevelLiveData = registerSpecificSensor(Sensor.TYPE_ACCELEROMETER) // for each sensor
         state!!.sensorLevelLiveData!!.observeForever { event: SensorLiveData.Event? ->

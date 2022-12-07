@@ -55,8 +55,13 @@ class LevelFragment : Fragment() {
             }
             else
             {
-
+                synchronized(tonePlaying)
+                {
+                    tonePlaying = false
+                }
             }
+
+
             movingCircle.x = mWidth/2 - movingCircle.width/2 + scaleShiftX
             movingCircle.y = mHeight/2- movingCircle.height - scaleShiftY
         }
