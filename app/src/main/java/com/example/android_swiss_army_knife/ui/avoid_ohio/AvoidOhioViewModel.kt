@@ -49,10 +49,10 @@ class AvoidOhioViewModel(application: Application) : AndroidViewModel(applicatio
     }
     // end location variables
 
-    private val _text = MutableLiveData<String>().apply {
-        value = ""
+    private val _facingOhio = MutableLiveData<Boolean>().apply {
+        value = false
     }
-    val text: LiveData<String> = _text
+    val facingOhio: LiveData<Boolean> = _facingOhio
 
     private var accelerometerMeasurement: FloatArray = FloatArray(3)
     private var magneticFieldMeasurement: FloatArray = FloatArray(3)
@@ -69,8 +69,7 @@ class AvoidOhioViewModel(application: Application) : AndroidViewModel(applicatio
         val compassDegreeMeasurement = (Math.toDegrees(mOrientation[0].toDouble())+360)%360
         if (abs(compassDegreeMeasurement - compassRotation.value!!) > 1.0) {
             compassRotation.value = compassDegreeMeasurement
-            val facingOhio = (compassRotation.value!! in min..max)
-            _text.value = "Direction is: ${compassRotation.value}, Facing Ohio?: $facingOhio"
+            _facingOhio.value = (compassRotation.value!! in min..max)
         }
     }
 
@@ -80,9 +79,9 @@ class AvoidOhioViewModel(application: Application) : AndroidViewModel(applicatio
         allOhioPoints.forEach {
             val bearingAngle = (state.sensorGpsLiveData.bearingTo(it).toDouble() + 360) % 360
             if (bearingAngle < min) {
-                min = bearingAngle
+                min = bearingAngle - 5.0
             } else if (bearingAngle > max) {
-                max = bearingAngle
+                max = bearingAngle + 5.0
             }
         }
     }

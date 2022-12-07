@@ -5,17 +5,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.android_swiss_army_knife.R
 import com.example.android_swiss_army_knife.databinding.FragmentAvoidOhioBinding
 
 class AvoidOhioFragment : Fragment() {
 
     private var _binding: FragmentAvoidOhioBinding? = null
     private lateinit var avoidOhioViewModel: AvoidOhioViewModel
+    private lateinit var textView: TextView
+    private lateinit var imageView: ImageView
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -52,11 +56,26 @@ class AvoidOhioFragment : Fragment() {
         _binding = FragmentAvoidOhioBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textAvoidOhio
-        avoidOhioViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        textView = binding.textAvoidOhio
+        imageView = binding.imageAvoidOhio
+        avoidOhioViewModel.facingOhio.observe(viewLifecycleOwner) {
+            if (it) {
+                facingOhio()
+            } else {
+                notFacingOhio()
+            }
         }
         return root
+    }
+
+    private fun facingOhio() {
+        textView.text = "ERROR: You are currently facing Ohio!"
+        imageView.setImageResource(R.drawable.error_sign)
+    }
+
+    private fun notFacingOhio() {
+        textView.text = "Congratulations, you are not facing Ohio!!"
+        imageView.setImageResource(R.drawable.thumbs_up)
     }
 
     override fun onStart() {
