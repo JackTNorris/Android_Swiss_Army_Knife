@@ -6,24 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".ui.level.LevelFragment">
 
-    <TextView
-        android:id="@+id/text_level"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.156" />
 
     <com.mikhaellopez.circleview.CircleView
-        android:id="@+id/circleView"
+        android:id="@+id/allCircleBound"
         android:layout_width="357dp"
         android:layout_height="359dp"
         app:cv_border="false"
@@ -37,8 +22,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <View android:background="@color/black"
+        android:layout_width = "match_parent"
+        android:layout_height="3dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+    <View android:background="@color/black"
+        android:layout_width = "3dp"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
     <com.mikhaellopez.circleview.CircleView
-        android:id="@+id/circleView2"
+        android:id="@+id/allCircleCenter"
         android:layout_width="60dp"
         android:layout_height="60dp"
         app:cv_border="true"
@@ -50,10 +53,12 @@
         app:cv_shadow_radius="10"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <com.mikhaellopez.circleview.CircleView
-        android:id="@+id/movingCircle"
+        android:id="@+id/allMovingCircle"
         android:layout_width="55dp"
         android:layout_height="55dp"
         app:cv_border="true"
@@ -66,6 +71,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" >
+    </com.mikhaellopez.circleview.CircleView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

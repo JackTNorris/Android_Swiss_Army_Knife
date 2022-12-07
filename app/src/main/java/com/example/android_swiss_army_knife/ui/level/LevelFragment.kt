@@ -30,15 +30,14 @@ class LevelFragment : Fragment() {
         levelViewModel.registerSensors()
         _binding = FragmentLevelBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        val textView: TextView = binding.textLevel
-        val movingCircle: CircleView = binding.movingCircle
-        val boundCircle: CircleView = binding.circleView
+        val movingCircle: CircleView = binding.allMovingCircle
+        val boundCircle: CircleView = binding.allCircleBound
         val mWidth = this.resources.displayMetrics.widthPixels
         val mHeight = this.resources.displayMetrics.heightPixels
 
         levelViewModel.orientation.observe(viewLifecycleOwner) {
-            val shiftY = it[1]
-            val shiftX = it[0]
+            val shiftY = Math.min(it[1], 9.8f)
+            val shiftX = Math.min(it[0], 9.8f)
             val scaleShiftX = (boundCircle.width - movingCircle.width) / 2 * shiftX / 9.8f
             val scaleShiftY = (boundCircle.height - movingCircle.height) / 2 * shiftY / 9.8f
 
