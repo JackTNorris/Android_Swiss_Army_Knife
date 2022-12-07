@@ -64,6 +64,7 @@
         />
 
     <View
+        android:id="@+id/view"
         android:layout_width="3dp"
         android:layout_height="match_parent"
         android:background="@color/black"
@@ -118,5 +119,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" >
     </com.mikhaellopez.circleview.CircleView>
+
+    <CheckBox
+        android:id="@+id/levelSound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="113dp"
+        android:layout_marginEnd="51dp"
+        android:text="Level Sound?"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/allCircleBound" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

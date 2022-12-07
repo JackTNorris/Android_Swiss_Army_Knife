@@ -11,6 +11,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.android_swiss_army_knife.databinding.FragmentLevelBinding
+import com.example.android_swiss_army_knife.ui.barometer.BarometerFragment
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.mikhaellopez.circleview.CircleView
 
 
@@ -38,12 +40,14 @@ class LevelFragment : Fragment() {
         val mWidth = this.resources.displayMetrics.widthPixels
         val mHeight = this.resources.displayMetrics.heightPixels
 
+
         levelViewModel.orientation.observe(viewLifecycleOwner) {
             val shiftY = Math.min(it[1], 9.8f)
             val shiftX = Math.min(it[0], 9.8f)
             val scaleShiftX = (boundCircle.width - movingCircle.width) / 2 * shiftX / 9.8f
             val scaleShiftY = (boundCircle.height - movingCircle.height) / 2 * shiftY / 9.8f
-            if (Math.abs(shiftX) < 1)
+
+            if((isLevel(shiftX, shiftY) || isLevel(shiftX, null) || isLevel(shiftY, null)) && binding.levelSound.isChecked)
             {
                 synchronized(tonePlaying)
                 {
@@ -51,13 +55,6 @@ class LevelFragment : Fragment() {
                     {
                         triggerSound()
                     }
-                }
-            }
-            else
-            {
-                synchronized(tonePlaying)
-                {
-                    tonePlaying = false
                 }
             }
 
@@ -70,13 +67,29 @@ class LevelFragment : Fragment() {
     }
 
 
+    private fun isLevel(shift1: Float, shift2: Float?): Boolean {
+        shift2?.let {
+            if (Math.abs(shift1) < 1 && Math.abs(shift2!!) < 1)
+            {
+                return true
+            }
+            return false
+        }
+        if (Math.abs(shift1) < 1)
+        {
+            return true
+        }
+        return false
+
+    }
+
     private fun triggerSound() {
         synchronized(tonePlaying)
         {
             tonePlaying = true
         }
         val toneGen1 = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
-        toneGen1.startTone(ToneGenerator.TONE_CDMA_PIP, 150)
+        toneGen1.startTone(ToneGenerator.TONE_CDMA_PIP, 50)
         Handler(Looper.getMainLooper()).postDelayed(
             {
                 tonePlaying = false
