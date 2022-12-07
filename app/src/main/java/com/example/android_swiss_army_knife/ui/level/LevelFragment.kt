@@ -30,9 +30,8 @@ class LevelFragment : Fragment() {
         levelViewModel.registerSensors()
         _binding = FragmentLevelBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        val textView: TextView = binding.textLevel
-        val movingCircle: CircleView = binding.movingCircle
-        val boundCircle: CircleView = binding.circleView
+        val movingCircle: CircleView = binding.allMovingCircle
+        val boundCircle: CircleView = binding.allCircleBound
         val mWidth = this.resources.displayMetrics.widthPixels
         val mHeight = this.resources.displayMetrics.heightPixels
 
