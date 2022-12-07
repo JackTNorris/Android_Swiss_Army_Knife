@@ -104,15 +104,15 @@ class SpeedometerViewModel(application: Application) : AndroidViewModel(applicat
         // Convert the speed to miles per hour if needed
         var speedMph = speedKmh * 0.621371
 
-//        if (previousLocation != null) {
-//            // Calculate the distance between the current and previous locations
-//            val distance = location.distanceTo(previousLocation)
-//
-//            // Check if the distance is below the MIN_DISTANCE_THRESHOLD
-//            if (distance < MIN_DISTANCE_THRESHOLD) {
-//                speedMph *= 0
-//            }
-//        }
+        if (previousLocation != null) {
+            // Calculate the distance between the current and previous locations
+            val distance = location.distanceTo(previousLocation)
+
+            // Check if the distance is below the MIN_DISTANCE_THRESHOLD
+            if (distance < MIN_DISTANCE_THRESHOLD) {
+                speedMph = speedMph * 0
+            }
+        }
 
         // Update the speed LiveData with the current speed
         _speed.value = speedMph.toInt().toString()
