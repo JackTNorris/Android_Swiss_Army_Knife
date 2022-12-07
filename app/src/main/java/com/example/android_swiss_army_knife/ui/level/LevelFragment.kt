@@ -36,8 +36,8 @@ class LevelFragment : Fragment() {
         val mHeight = this.resources.displayMetrics.heightPixels
 
         levelViewModel.orientation.observe(viewLifecycleOwner) {
-            val shiftY = Math.max(it[1], 9.8f)
-            val shiftX = Math.max(it[0], 9.8f)
+            val shiftY = Math.min(it[1], 9.8f)
+            val shiftX = Math.min(it[0], 9.8f)
             val scaleShiftX = (boundCircle.width - movingCircle.width) / 2 * shiftX / 9.8f
             val scaleShiftY = (boundCircle.height - movingCircle.height) / 2 * shiftY / 9.8f
 
