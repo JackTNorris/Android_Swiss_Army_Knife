@@ -1,10 +1,13 @@
 package com.example.android_swiss_army_knife.ui.level
 
+import android.media.AudioManager
+import android.media.ToneGenerator
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.android_swiss_army_knife.databinding.FragmentLevelBinding
@@ -19,7 +22,7 @@ class LevelFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-
+    private var tonePlaying = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,7 +43,20 @@ class LevelFragment : Fragment() {
             val shiftX = Math.min(it[0], 9.8f)
             val scaleShiftX = (boundCircle.width - movingCircle.width) / 2 * shiftX / 9.8f
             val scaleShiftY = (boundCircle.height - movingCircle.height) / 2 * shiftY / 9.8f
+            if (Math.abs(shiftX) < 1)
+            {
+                synchronized(tonePlaying)
+                {
+                    if(!tonePlaying)
+                    {
+                        triggerSound()
+                    }
+                }
+            }
+            else
+            {
 
+            }
             movingCircle.x = mWidth/2 - movingCircle.width/2 + scaleShiftX
             movingCircle.y = mHeight/2- movingCircle.height - scaleShiftY
         }
@@ -48,6 +64,22 @@ class LevelFragment : Fragment() {
         return root
     }
 
+
+    private fun triggerSound() {
+        synchronized(tonePlaying)
+        {
+            tonePlaying = true
+        }
+        val toneGen1 = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
+        toneGen1.startTone(ToneGenerator.TONE_CDMA_PIP, 150)
+        Handler(Looper.getMainLooper()).postDelayed(
+            {
+                tonePlaying = false
+                // This method will be executed once the timer is over
+            },
+            1000 // value in milliseconds
+        )
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
