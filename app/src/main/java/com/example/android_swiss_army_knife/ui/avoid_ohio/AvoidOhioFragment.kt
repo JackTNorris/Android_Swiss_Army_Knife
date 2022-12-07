@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.android_swiss_army_knife.R
 import com.example.android_swiss_army_knife.databinding.FragmentAvoidOhioBinding
 
 class AvoidOhioFragment : Fragment() {
@@ -56,6 +57,7 @@ class AvoidOhioFragment : Fragment() {
         val root: View = binding.root
 
         textView = binding.textAvoidOhio
+        imageView = binding.imageAvoidOhio
         avoidOhioViewModel.facingOhio.observe(viewLifecycleOwner) {
             if (it) {
                 facingOhio()
@@ -68,10 +70,12 @@ class AvoidOhioFragment : Fragment() {
 
     private fun facingOhio() {
         textView.text = "ERROR: You are currently facing Ohio!"
+        imageView.setImageResource(R.drawable.error_sign)
     }
 
     private fun notFacingOhio() {
         textView.text = "Congratulations, you are not facing Ohio!!"
+        imageView.setImageResource(R.drawable.thumbs_up)
     }
 
     override fun onStart() {
