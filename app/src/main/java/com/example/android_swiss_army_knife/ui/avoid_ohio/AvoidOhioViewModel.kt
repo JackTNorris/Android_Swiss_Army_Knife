@@ -79,9 +79,9 @@ class AvoidOhioViewModel(application: Application) : AndroidViewModel(applicatio
         allOhioPoints.forEach {
             val bearingAngle = (state.sensorGpsLiveData.bearingTo(it).toDouble() + 360) % 360
             if (bearingAngle < min) {
-                min = bearingAngle
+                min = bearingAngle - 5.0
             } else if (bearingAngle > max) {
-                max = bearingAngle
+                max = bearingAngle + 5.0
             }
         }
     }
