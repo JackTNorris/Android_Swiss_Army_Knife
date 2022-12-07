@@ -19,7 +19,7 @@ class SpeedometerViewModel(application: Application) : AndroidViewModel(applicat
     LocationListener {
 
     private val _speed = MutableLiveData<String>().apply {
-        value = "0.0"
+        value = "0"
     }
     val speed: LiveData<String>
         get() = _speed
@@ -83,16 +83,42 @@ class SpeedometerViewModel(application: Application) : AndroidViewModel(applicat
         )
     }
 
+    // Define a threshold for the minimum distance that indicates the user's location is changing
+    val MIN_DISTANCE_THRESHOLD = 1.0 // 1 meter
+
+    // Store the previous location in a variable
+    var previousLocation: Location? = null
+
+
     override fun onLocationChanged(location: Location) {
+
+
+        // Update the previous location with the current location
+        previousLocation = location
         // Calculate the speed in meters per second
         val speed = location.speed
 
         // Convert the speed to kilometers per hour if needed
         val speedKmh = speed * 3.6
 
+        // Convert the speed to miles per hour if needed
+        var speedMph = speedKmh * 0.621371
+
+//        if (previousLocation != null) {
+//            // Calculate the distance between the current and previous locations
+//            val distance = location.distanceTo(previousLocation)
+//
+//            // Check if the distance is below the MIN_DISTANCE_THRESHOLD
+//            if (distance < MIN_DISTANCE_THRESHOLD) {
+//                speedMph *= 0
+//            }
+//        }
+
         // Update the speed LiveData with the current speed
-        _speed.value = speedKmh.toString()
+        _speed.value = speedMph.toInt().toString()
     }
+
+
 
     fun unregisterSensors() {
         // Unregister the LocationListener
