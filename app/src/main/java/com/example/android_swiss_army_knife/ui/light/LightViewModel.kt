@@ -24,8 +24,8 @@ class LightViewModel(application: Application) : AndroidViewModel(application) {
         get() = _image
 
     fun registerSensors() { // use entire block for each sensor you need in this class
-        state!!.sensorBarometerLiveData = registerSpecificSensor(Sensor.TYPE_LIGHT) // for each sensor
-        state!!.sensorBarometerLiveData!!.observeForever { event: SensorLiveData.Event? ->
+        state.sensorLightLiveData = registerSpecificSensor(Sensor.TYPE_LIGHT) // for each sensor
+        state.sensorLightLiveData!!.observeForever { event: SensorLiveData.Event? ->
             if (event != null) {
                 val currLight = event.value.toDouble()
                 _text.value = currLight.toString()
@@ -40,7 +40,7 @@ class LightViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun deregisterSensors() { // set all sensors as inactive
-        state!!.sensorBarometerLiveData!!.setInactive() // required for each sensor you use
+        state.sensorLightLiveData!!.setInactive() // required for each sensor you use
     }
 
 
@@ -53,6 +53,6 @@ class LightViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     private class SensorState { // add additional sensors here
-        var sensorBarometerLiveData: SensorLiveData? = null // new var for each sensor if multiple are needed
+        var sensorLightLiveData: SensorLiveData? = null // new var for each sensor if multiple are needed
     }
 }

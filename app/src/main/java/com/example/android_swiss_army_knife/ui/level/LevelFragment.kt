@@ -11,10 +11,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.android_swiss_army_knife.databinding.FragmentLevelBinding
-import com.example.android_swiss_army_knife.ui.barometer.BarometerFragment
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.mikhaellopez.circleview.CircleView
-
+import kotlin.math.abs
 
 class LevelFragment : Fragment() {
 
@@ -42,8 +40,8 @@ class LevelFragment : Fragment() {
 
 
         levelViewModel.orientation.observe(viewLifecycleOwner) {
-            val shiftY = Math.min(it[1], 9.8f)
-            val shiftX = Math.min(it[0], 9.8f)
+            val shiftY = it[1].coerceAtMost(9.8f)
+            val shiftX = it[0].coerceAtMost(9.8f)
             val scaleShiftX = (boundCircle.width - movingCircle.width) / 2 * shiftX / 9.8f
             val scaleShiftY = (boundCircle.height - movingCircle.height) / 2 * shiftY / 9.8f
 
@@ -69,13 +67,13 @@ class LevelFragment : Fragment() {
 
     private fun isLevel(shift1: Float, shift2: Float?): Boolean {
         shift2?.let {
-            if (Math.abs(shift1) < 1 && Math.abs(shift2!!) < 1)
+            if (abs(shift1) < 1 && abs(shift2) < 1)
             {
                 return true
             }
             return false
         }
-        if (Math.abs(shift1) < 1)
+        if (abs(shift1) < 1)
         {
             return true
         }

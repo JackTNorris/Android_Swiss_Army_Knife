@@ -9,7 +9,7 @@ import com.example.android_swiss_army_knife.util.SensorLiveData
 
 class LevelViewModel(application: Application) : AndroidViewModel(application) {
 
-    private var state: LevelViewModel.SensorState = LevelViewModel.SensorState()
+    private var state: SensorState = SensorState()
 
     val text = MutableLiveData<String>().apply {
         value = "This is level Fragment"
@@ -20,8 +20,8 @@ class LevelViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun registerSensors() { // use entire block for each sensor you need in this class
-        state!!.sensorLevelLiveData = registerSpecificSensor(Sensor.TYPE_ACCELEROMETER) // for each sensor
-        state!!.sensorLevelLiveData!!.observeForever { event: SensorLiveData.Event? ->
+        state.sensorLevelLiveData = registerSpecificSensor(Sensor.TYPE_ACCELEROMETER) // for each sensor
+        state.sensorLevelLiveData!!.observeForever { event: SensorLiveData.Event? ->
 
             if (event != null) {
                 orientation.value = event.values.copyOf()
@@ -39,7 +39,7 @@ class LevelViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun deregisterSensors() { // set all sensors as inactive
-        state!!.sensorLevelLiveData!!.setInactive() // required for each sensor you use
+        state.sensorLevelLiveData!!.setInactive() // required for each sensor you use
     }
 
     private class SensorState { // add additional sensors here
