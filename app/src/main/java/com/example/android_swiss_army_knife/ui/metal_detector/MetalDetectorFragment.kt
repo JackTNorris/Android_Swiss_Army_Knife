@@ -5,13 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.ekn.gruzer.gaugelibrary.HalfGauge
 import com.ekn.gruzer.gaugelibrary.Range
 import com.example.android_swiss_army_knife.databinding.FragmentMetalDetectorBinding
-import com.example.android_swiss_army_knife.ui.barometer.BarometerFragment
 
 class MetalDetectorFragment : Fragment() {
 

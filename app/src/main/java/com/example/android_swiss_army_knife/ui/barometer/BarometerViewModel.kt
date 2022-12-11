@@ -27,8 +27,8 @@ class BarometerViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     fun registerSensors() { // use entire block for each sensor you need in this class
-        state!!.sensorBarometerLiveData = registerSpecificSensor(Sensor.TYPE_PRESSURE) // for each sensor
-        state!!.sensorBarometerLiveData!!.observeForever { event: SensorLiveData.Event? ->
+        state.sensorBarometerLiveData = registerSpecificSensor(Sensor.TYPE_PRESSURE) // for each sensor
+        state.sensorBarometerLiveData!!.observeForever { event: SensorLiveData.Event? ->
             if (event != null) {
                 val tmpSensorValue = event.value.toDouble()
                 _value.value = when (_units.value) {
@@ -42,7 +42,7 @@ class BarometerViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     fun deregisterSensors() { // set all sensors as inactive
-        state!!.sensorBarometerLiveData!!.setInactive() // required for each sensor you use
+        state.sensorBarometerLiveData!!.setInactive() // required for each sensor you use
     }
 
 

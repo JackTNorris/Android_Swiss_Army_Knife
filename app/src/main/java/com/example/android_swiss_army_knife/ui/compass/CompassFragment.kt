@@ -20,9 +20,6 @@ class CompassFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private var previousDegree = 0.0
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -35,7 +32,7 @@ class CompassFragment : Fragment() {
 
         val textView: TextView = binding.textCompass
         val compassImage: ImageView = binding.imageViewCompass
-        compassViewModel.compass_rotation.observe(viewLifecycleOwner) {
+        compassViewModel.compassRotation.observe(viewLifecycleOwner) {
             textView.text = it.toString()
             compassImage.rotation = it.toFloat()
         }

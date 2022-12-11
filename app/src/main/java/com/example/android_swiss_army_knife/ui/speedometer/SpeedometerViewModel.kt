@@ -33,15 +33,8 @@ class SpeedometerViewModel(application: Application) : AndroidViewModel(applicat
         }
     }
 
-    fun unbind() {
-        if (isBound) {
-            unregisterSensors()
-            isBound = false
-        }
-    }
-
     @SuppressLint("StaticFieldLeak")
-    private lateinit var context: Context
+    private var context: Context
 
     init {
         context = application.applicationContext
@@ -84,10 +77,10 @@ class SpeedometerViewModel(application: Application) : AndroidViewModel(applicat
     }
 
     // Define a threshold for the minimum distance that indicates the user's location is changing
-    val MIN_DISTANCE_THRESHOLD = 1.0 // 1 meter
+    private val MIN_DISTANCE_THRESHOLD = 1.0 // 1 meter
 
     // Store the previous location in a variable
-    var previousLocation: Location? = null
+    private var previousLocation: Location? = null
 
 
     override fun onLocationChanged(location: Location) {
@@ -106,11 +99,11 @@ class SpeedometerViewModel(application: Application) : AndroidViewModel(applicat
 
         if (previousLocation != null) {
             // Calculate the distance between the current and previous locations
-            val distance = location.distanceTo(previousLocation)
+            val distance = location.distanceTo(previousLocation!!)
 
             // Check if the distance is below the MIN_DISTANCE_THRESHOLD
             if (distance < MIN_DISTANCE_THRESHOLD) {
-                speedMph = speedMph * 0
+                speedMph *= 0
             }
         }
 
