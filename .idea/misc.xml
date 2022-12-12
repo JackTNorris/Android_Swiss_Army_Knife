@@ -3,32 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="../../../../../../layout/custom_preview.xml" value="0.11940800538176925" />
-        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.138" />
-        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.138" />
-        <entry key="app/src/main/res/drawable/ic_menu_camera.xml" value="0.138" />
-        <entry key="app/src/main/res/drawable/ic_menu_gallery.xml" value="0.138" />
-        <entry key="app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.138" />
-        <entry key="app/src/main/res/drawable/shapes.xml" value="0.29152984619140626" />
-        <entry key="app/src/main/res/drawable/side_nav_bar.xml" value="0.138" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.582010582010582" />
-        <entry key="app/src/main/res/layout/app_bar_main.xml" value="0.1078167115902965" />
-        <entry key="app/src/main/res/layout/content_main.xml" value="0.34375" />
-        <entry key="app/src/main/res/layout/fragment_avoid_ohio.xml" value="0.34375" />
-        <entry key="app/src/main/res/layout/fragment_barometer.xml" value="0.18591691995947315" />
-        <entry key="app/src/main/res/layout/fragment_compass.xml" value="0.18645833333333334" />
-        <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.34375" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1945" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1945" />
+        <entry key="app/src/main/res/drawable/ic_menu_avoid_ohio.xml" value="0.1945" />
+        <entry key="app/src/main/res/drawable/ic_menu_compass.xml" value="0.1945" />
+        <entry key="app/src/main/res/drawable/ic_menu_metal_detector.xml" value="0.302" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/app_bar_main.xml" value="0.15942028985507245" />
+        <entry key="app/src/main/res/layout/content_main.xml" value="0.15942028985507245" />
+        <entry key="app/src/main/res/layout/fragment_avoid_ohio.xml" value="0.15942028985507245" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_level.xml" value="0.17256011962890627" />
-        <entry key="app/src/main/res/layout/fragment_light.xml" value="0.15534420289855072" />
-        <entry key="app/src/main/res/layout/fragment_metal_detector.xml" value="0.33016304347826086" />
-        <entry key="app/src/main/res/layout/fragment_slideshow.xml" value="0.34375" />
-        <entry key="app/src/main/res/layout/fragment_speedometer.xml" value="0.33016304347826086" />
-        <entry key="app/src/main/res/layout/nav_header.xml" value="0.5901041666666667" />
-        <entry key="app/src/main/res/layout/nav_header_main.xml" value="0.34375" />
-        <entry key="app/src/main/res/menu/activity_main_drawer.xml" value="0.34375" />
-        <entry key="app/src/main/res/menu/main.xml" value="0.34375" />
-        <entry key="app/src/main/res/menu/nav_menu.xml" value="0.5901041666666667" />
+        <entry key="app/src/main/res/layout/nav_header_main.xml" value="0.15942028985507245" />
       </map>
     </option>
   </component>
